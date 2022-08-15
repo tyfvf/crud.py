@@ -96,8 +96,9 @@ class Application(Functions):
         self.tree.column('#2', width=200)
         self.tree.column('#3', width=100)
         self.tree.column('#4', width=100)
-
+        
         self.tree.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
+        self.tree.bind('<Double-1>', self.double_click)
 
         self.scroll = Scrollbar(self.frame2, orient=VERTICAL, command=self.tree.yview)
         self.tree.config(yscrollcommand=self.scroll.set)

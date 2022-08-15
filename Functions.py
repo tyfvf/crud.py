@@ -66,3 +66,15 @@ class Functions():
         for i in data:
             self.tree.insert('', END, values=i)
         self.desconnect()
+
+
+    def double_click(self, event):
+        self.clear()
+        selected = self.tree.selection()
+
+        for i in selected:
+            col1, col2, col3, col4 = self.tree.item(i, 'values')
+            self.number_entry.insert(END, col1)
+            self.name_entry.insert(END, col2)
+            self.phone_entry.insert(END, col3)
+            self.city_entry.insert(END, col4)
