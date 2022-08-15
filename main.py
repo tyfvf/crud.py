@@ -84,7 +84,7 @@ class Application(Functions):
         self.bt_clear.place(relx=0.2, rely=0.08, relheight=0.13, relwidth=0.1)
 
         # Search
-        self.bt_search = Button(self.frame1, text='Search', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'))
+        self.bt_search = Button(self.frame1, text='Search', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.search_client)
         self.bt_search.place(relx=0.3, rely=0.08, relheight=0.13, relwidth=0.1)
 
         # Create

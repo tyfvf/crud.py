@@ -91,7 +91,7 @@ class Functions():
     def delete_client(self):
         self.variables()
         self.connect()
-        self.cursor.execute('DELETE FROM clients WHERE num = ?', (self.num,))
+        self.cursor.execute("""DELETE FROM clients WHERE num = ?""", (self.num,))
         self.conn.commit()
         self.desconnect()
         self.clear()
@@ -101,8 +101,21 @@ class Functions():
     def update_client(self):
         self.variables()
         self.connect()
-        self.cursor.execute('UPDATE clients SET name = ?, phone = ?, city = ?, status = ?, age = ? WHERE num = ?', (self.name, self.phone, self.city, self.status, self.age, self.num))
+        self.cursor.execute("""UPDATE clients SET name = ?, phone = ?, city = ?, status = ?, age = ? WHERE num = ?""", (self.name, self.phone, self.city, self.status, self.age, self.num))
         self.conn.commit()
         self.desconnect()
         self.clear()
         self.show_tree()
+
+
+    def search_client(self):
+        self.connect()
+        self.tree.delete(*self.tree.get_children())
+        self.name_entry.insert(END, '%')
+        name = self.name_entry.get()
+        self.cursor.execute("""SELECT num, name, phone, city, status, age FROM clients WHERE name LIKE '%s' ORDER BY name ASC""" % name)
+        data = self.cursor.fetchall()
+        for i in data:
+            self.tree.insert('', END, values=i)
+        self.clear()
+        self.desconnect()
