@@ -92,7 +92,7 @@ class Application(Functions):
         self.bt_search.place(relx=0.6, rely=0.08, relheight=0.13, relwidth=0.1)
 
         # Update
-        self.bt_search = Button(self.frame1, text='Update', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'))
+        self.bt_search = Button(self.frame1, text='Update', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.update_client)
         self.bt_search.place(relx=0.7, rely=0.08, relheight=0.13, relwidth=0.1)
 
         # Delete

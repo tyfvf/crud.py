@@ -96,3 +96,13 @@ class Functions():
         self.desconnect()
         self.clear()
         self.show_tree()
+
+
+    def update_client(self):
+        self.variables()
+        self.connect()
+        self.cursor.execute('UPDATE clients SET name = ?, phone = ?, city = ?, status = ?, age = ? WHERE num = ?', (self.name, self.phone, self.city, self.status, self.age, self.num))
+        self.conn.commit()
+        self.desconnect()
+        self.clear()
+        self.show_tree()
