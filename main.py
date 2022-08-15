@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 
 
 class Application():
@@ -7,6 +8,7 @@ class Application():
         self.screen()
         self.frames()
         self.widgets_frame1()
+        self.treeview()
         self.root.mainloop()
 
 
@@ -44,11 +46,11 @@ class Application():
         self.name_entry.place(relx=0.1, rely=0.35, relwidth=0.8, relheight=0.08)
 
         # Cellphone
-        self.lb_cellphone = Label(self.frame1, text='Cellphone', bg='#6CABFA')
-        self.lb_cellphone.place(relx=0.02, rely=0.6, relwidth=0.08, relheight=0.08)
+        self.lb_phone = Label(self.frame1, text='Phone', bg='#6CABFA')
+        self.lb_phone.place(relx=0.02, rely=0.6, relwidth=0.08, relheight=0.08)
 
-        self.cellphone_entry = Entry(self.frame1)
-        self.cellphone_entry.place(relx=0.1, rely=0.6, relwidth=0.3, relheight=0.08)
+        self.phone_entry = Entry(self.frame1)
+        self.phone_entry.place(relx=0.1, rely=0.6, relwidth=0.3, relheight=0.08)
 
         # City
         self.lb_city = Label(self.frame1, text='City', bg='#6CABFA')
@@ -77,5 +79,23 @@ class Application():
         self.bt_search = Button(self.frame1, text='Delete', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'))
         self.bt_search.place(relx=0.8, rely=0.08, relheight=0.13, relwidth=0.1)
 
+
+    def treeview(self):
+        self.tree = ttk.Treeview(self.frame2, height=3, columns=('col1', 'col2', 'col3'))
+        self.tree.heading('#0', text='Number')
+        self.tree.heading('#1', text='Name')
+        self.tree.heading('#2', text='Phone')
+        self.tree.heading('#3', text='City')
+
+        self.tree.column('#0', width=50)
+        self.tree.column('#1', width=200)
+        self.tree.column('#2', width=100)
+        self.tree.column('#3', width=100)
+
+        self.tree.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
+
+        self.scroll = Scrollbar(self.frame2, orient=VERTICAL, command=self.tree.yview)
+        self.tree.config(yscrollcommand=self.scroll.set)
+        self.scroll.place(relx=0.96, rely=0.02, relwidth=0.02, relheight=0.96)
 
 Application()
