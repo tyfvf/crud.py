@@ -1,11 +1,13 @@
 from tkinter import *
 from tkinter import ttk
 from Functions import Functions
+from Validation import Validation
 
 
-class Application(Functions):
+class Application(Functions, Validation):
     def __init__(self):
         self.root = Tk()
+        self.validators()
         self.screen()
         self.frames()
         self.widgets_frame1()
@@ -38,7 +40,7 @@ class Application(Functions):
         self.lb_number = Label(self.frame1, text='Number', bg='#6CABFA', font=('Verdana', 8, 'bold'))
         self.lb_number.place(relx=0.02, rely=0.02, relwidth=0.08, relheight=0.08)
 
-        self.number_entry = Entry(self.frame1)
+        self.number_entry = Entry(self.frame1, validate='key', validatecommand=self.in2)
         self.number_entry.place(relx=0.02, rely=0.12, relwidth=0.08, relheight=0.08)
 
         # Name
@@ -76,7 +78,7 @@ class Application(Functions):
         self.lb_age = Label(self.frame1, text='Age', bg='#6CABFA', font=('Verdana', 8, 'bold'))
         self.lb_age.place(relx=0.5, rely=0.85, relwidth=0.08, relheight=0.08)
 
-        self.age_entry = Entry(self.frame1)
+        self.age_entry = Entry(self.frame1, validate='key', validatecommand=self.agev)
         self.age_entry.place(relx=0.58, rely=0.85, relwidth=0.1, relheight=0.08)
 
         # Clear
@@ -124,5 +126,10 @@ class Application(Functions):
         self.scroll = Scrollbar(self.frame2, orient=VERTICAL, command=self.tree.yview)
         self.tree.config(yscrollcommand=self.scroll.set)
         self.scroll.place(relx=0.96, rely=0.02, relwidth=0.02, relheight=0.96)
+
+
+    def validators(self):
+        self.in2 = (self.root.register(self.val_integer2), '%P')
+        self.agev = (self.root.register(self.val_age), '%P')
 
 Application()
