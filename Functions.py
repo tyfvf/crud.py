@@ -9,6 +9,7 @@ class Functions():
         self.name_entry.delete(0, END)
         self.phone_entry.delete(0, END)
         self.city_entry.delete(0, END)
+        self.age_entry.delete(0, END)
 
 
     def connect(self):
@@ -29,7 +30,9 @@ class Functions():
                 num INTEGER PRIMARY KEY,
                 name CHAR(40) NOT NULL,
                 phone INTEGER(20),
-                city CHAR(40)
+                city CHAR(40),
+                status CHAR(40),
+                age INTEGER(3)
             );
         """)
         self.conn.commit()
@@ -41,7 +44,9 @@ class Functions():
         self.num = self.number_entry.get() 
         self.name = self.name_entry.get() 
         self.phone = self.phone_entry.get() 
-        self.city = self.city_entry.get() 
+        self.city = self.city_entry.get()
+        self.status = self.status_var.get()
+        self.age = self.age_entry.get() 
 
 
     def new_client(self):
@@ -52,7 +57,7 @@ class Functions():
             self.name_entry.focus()
         else:
             self.connect()
-            self.cursor.execute("""INSERT INTO clients (name, phone, city) VALUES (?, ?, ?)""", (self.name, self.phone, self.city))
+            self.cursor.execute("""INSERT INTO clients (name, phone, city, status, age) VALUES (?, ?, ?, ?, ?)""", (self.name, self.phone, self.city, self.status, self.age))
             self.conn.commit()
             self.desconnect()
             self.show_tree()
@@ -62,7 +67,7 @@ class Functions():
     def show_tree(self):
         self.tree.delete(*self.tree.get_children())
         self.connect()
-        data = self.cursor.execute("""SELECT num, name, phone, city FROM clients ORDER BY name ASC;""")
+        data = self.cursor.execute("""SELECT num, name, phone, city, status, age FROM clients ORDER BY name ASC;""")
         for i in data:
             self.tree.insert('', END, values=i)
         self.desconnect()
@@ -73,8 +78,10 @@ class Functions():
         selected = self.tree.selection()
 
         for i in selected:
-            col1, col2, col3, col4 = self.tree.item(i, 'values')
+            col1, col2, col3, col4, col5, col6 = self.tree.item(i, 'values')
             self.number_entry.insert(END, col1)
             self.name_entry.insert(END, col2)
             self.phone_entry.insert(END, col3)
             self.city_entry.insert(END, col4)
+            self.status_var.set(col5)
+            self.age_entry.insert(END, col6)
