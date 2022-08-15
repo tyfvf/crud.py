@@ -1,8 +1,9 @@
 from tkinter import *
 from tkinter import ttk
+from Functions import Functions
 
 
-class Application():
+class Application(Functions):
     def __init__(self):
         self.root = Tk()
         self.screen()
@@ -60,7 +61,7 @@ class Application():
         self.city_entry.place(relx=0.58, rely=0.6, relwidth=0.32, relheight=0.08)
 
         # Clear
-        self.bt_clear = Button(self.frame1, text='Clear', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'))
+        self.bt_clear = Button(self.frame1, text='Clear', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.clear)
         self.bt_clear.place(relx=0.2, rely=0.08, relheight=0.13, relwidth=0.1)
 
         # Search
