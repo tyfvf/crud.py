@@ -9,6 +9,7 @@ class Functions():
         self.name_entry.delete(0, END)
         self.phone_entry.delete(0, END)
         self.city_entry.delete(0, END)
+        self.status_var.set('Single')
         self.age_entry.delete(0, END)
 
 
@@ -85,3 +86,13 @@ class Functions():
             self.city_entry.insert(END, col4)
             self.status_var.set(col5)
             self.age_entry.insert(END, col6)
+
+
+    def delete_client(self):
+        self.variables()
+        self.connect()
+        self.cursor.execute('DELETE FROM clients WHERE num = ?', (self.num,))
+        self.conn.commit()
+        self.desconnect()
+        self.clear()
+        self.show_tree()
