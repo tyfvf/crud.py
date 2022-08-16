@@ -1,13 +1,15 @@
 from tkinter import *
 from tkinter import ttk
 from Functions import Functions
+from Reports import Reports
 from Validation import Validation
 
 
-class Application(Functions, Validation):
+class Application(Functions, Validation, Reports):
     def __init__(self):
         self.root = Tk()
         self.validators()
+        self.menus()
         self.screen()
         self.frames()
         self.widgets_frame1()
@@ -131,5 +133,23 @@ class Application(Functions, Validation):
     def validators(self):
         self.in2 = (self.root.register(self.val_integer2), '%P')
         self.agev = (self.root.register(self.val_age), '%P')
+
+
+    def menus(self):
+        menubar = Menu(self.root)
+        self.root.config(menu=menubar)
+        filemenu = Menu(menubar, tearoff=0)
+        filemenu2 = Menu(menubar, tearoff=0)
+
+        def quit():
+            self.root.destroy()
+
+        menubar.add_cascade(label='Options', menu=filemenu)
+        menubar.add_cascade(label='Reports', menu=filemenu2)
+
+        filemenu.add_command(label='Sair', command=quit)
+
+        filemenu2.add_command(label='PDF', command=self.client_pdf)
+
 
 Application()
