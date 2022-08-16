@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+import awesometkinter as atk
 from Functions import Functions
 from Reports import Reports
 from Validation import Validation
@@ -87,21 +88,31 @@ class Application(Functions, Validation, Reports):
         self.bt_clear = Button(self.frame1, text='Clear', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.clear)
         self.bt_clear.place(relx=0.2, rely=0.08, relheight=0.13, relwidth=0.1)
 
+        atk.tooltip(self.bt_clear, 'Clear all entries')
+
         # Search
         self.bt_search = Button(self.frame1, text='Search', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.search_client)
         self.bt_search.place(relx=0.3, rely=0.08, relheight=0.13, relwidth=0.1)
 
+        atk.tooltip(self.bt_search, 'Search a client in the database by the name\nif no name is entered, displays all clients')
+
         # Create
-        self.bt_search = Button(self.frame1, text='Create', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.new_client)
-        self.bt_search.place(relx=0.6, rely=0.08, relheight=0.13, relwidth=0.1)
+        self.bt_create = Button(self.frame1, text='Create', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.new_client)
+        self.bt_create.place(relx=0.6, rely=0.08, relheight=0.13, relwidth=0.1)
+
+        atk.tooltip(self.bt_create, 'Create a new client in the database \nName is required.')
 
         # Update
-        self.bt_search = Button(self.frame1, text='Update', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.update_client)
-        self.bt_search.place(relx=0.7, rely=0.08, relheight=0.13, relwidth=0.1)
+        self.bt_update = Button(self.frame1, text='Update', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.update_client)
+        self.bt_update.place(relx=0.7, rely=0.08, relheight=0.13, relwidth=0.1)
+
+        atk.tooltip(self.bt_update, 'Update all fields of a client by the number inserted \nBe sure to fill all fields')
 
         # Delete
-        self.bt_search = Button(self.frame1, text='Delete', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.delete_client)
-        self.bt_search.place(relx=0.8, rely=0.08, relheight=0.13, relwidth=0.1)
+        self.bt_delete = Button(self.frame1, text='Delete', bg='#AD7E28', fg='white', activebackground='#FAC76B', activeforeground='white', font=('Verdana', 9, 'bold'), command=self.delete_client)
+        self.bt_delete.place(relx=0.8, rely=0.08, relheight=0.13, relwidth=0.1)
+
+        atk.tooltip(self.bt_delete, 'Delete a client from the database by the number entered')
 
 
     def treeview(self):
