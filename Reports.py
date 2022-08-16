@@ -1,9 +1,15 @@
 import webbrowser
 from reportlab.pdfgen import canvas
+from openpyxl import Workbook
 
 class Reports():
     def show_pdf(self):
         webbrowser.open('client.pdf')
+
+    
+    def show_excel(self):
+        webbrowser.open('clients.xlsx')
+
 
     def client_pdf(self):
         self.canvas = canvas.Canvas('client.pdf')
@@ -40,3 +46,23 @@ class Reports():
         self.canvas.showPage()
         self.canvas.save()
         self.show_pdf()
+
+
+    def clients_excel(self):
+        wk = Workbook()
+
+        sheet = wk.active
+
+        sheet['A1'] = 'Number'
+        sheet['B1'] = 'Name'
+        sheet['C1'] = 'Phone'
+        sheet['D1'] = 'City'
+        sheet['E1'] = 'Marital Status'
+        sheet['F1'] = 'Age'
+
+        for i in self.tree.get_children():
+            sheet.append(self.tree.item(i, 'values'))
+
+        wk.save('Clients.xlsx')
+
+        self.show_excel()

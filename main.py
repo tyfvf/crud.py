@@ -150,6 +150,7 @@ class Application(Functions, Validation, Reports):
         filemenu.add_command(label='Sair', command=quit)
 
         filemenu2.add_command(label='PDF', command=self.client_pdf)
+        filemenu2.add_command(label='EXCEL', command=self.clients_excel)
 
 
 Application()
