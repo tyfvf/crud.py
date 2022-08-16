@@ -141,11 +141,6 @@ class Application(Functions, Validation, Reports):
         self.scroll.place(relx=0.96, rely=0.02, relwidth=0.02, relheight=0.96)
 
 
-    def validators(self):
-        self.in2 = (self.root.register(self.val_integer2), '%P')
-        self.agev = (self.root.register(self.val_age), '%P')
-
-
     def menus(self):
         menubar = Menu(self.root)
         self.root.config(menu=menubar)
@@ -158,10 +153,16 @@ class Application(Functions, Validation, Reports):
         menubar.add_cascade(label='Options', menu=filemenu)
         menubar.add_cascade(label='Reports', menu=filemenu2)
 
-        filemenu.add_command(label='Sair', command=quit)
+        filemenu.add_command(label='About', command=self.about)
+        filemenu.add_command(label='Quit', command=quit)
 
         filemenu2.add_command(label='PDF', command=self.client_pdf)
         filemenu2.add_command(label='EXCEL', command=self.clients_excel)
+
+
+    def validators(self):
+        self.in2 = (self.root.register(self.val_integer2), '%P')
+        self.agev = (self.root.register(self.val_age), '%P')
 
 
 Application()

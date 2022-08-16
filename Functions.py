@@ -119,3 +119,14 @@ class Functions():
             self.tree.insert('', END, values=i)
         self.clear()
         self.desconnect()
+
+
+    def about(self):
+        answer = messagebox.askyesno('About', 
+        "This is a CRUD (short for create, read, update, delete) application made in python for desktop, it has some basic functions to help in whatever you need a client database, if needed just change some values for the best suit, it's open source\n\n Did you liked my little project?")
+
+        if answer:
+            messagebox.showinfo('Yey', 'Thanks!\nMake sure to give a star at https://github.com/tyfvf/crud.py')
+        else:
+            messagebox.showinfo('Oh', 
+        "=( \n\nMake sure to open a issue or a pull request at https://github.com/tyfvf/crud.py so i can make the project better, your feedback is appreciated ;)")
